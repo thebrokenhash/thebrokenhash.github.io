@@ -63,7 +63,7 @@ function loadOnCanvas(file) {
           data[i + 2] = brightness;
         }
         ctx.putImageData(imageData, 0, 0);
-        ctx.globalAlpha = 0.7;
+        ctx.globalAlpha = 1;
         ctx.drawImage(overlayImage, 0, 0);
         document.getElementById('download-btn').style.display = 'inline';
       }
