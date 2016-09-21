@@ -1,0 +1,515 @@
+	
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+     
+	<head>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49390291-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+     
+    <title>The Broken Hash</title>
+    <link rel="shortcut icon" href="{Favicon}">
+     
+    <!-- default variables -->
+     
+
+     
+     
+        <meta name="text:link 1 url" content="" />
+        <meta name="text:link 1 title" content="" />
+        <meta name="text:link 2 url" content="" />
+        <meta name="text:link 2 title" content="" />
+        <meta name="text:link 3 url" content="" />
+        <meta name="text:link 3 title" content="" />
+        <meta name="text:link 4 url" content="" />
+        <meta name="text:link 4 title" content="" />
+     
+     
+     
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+     
+    <!-- tooltip script -->
+    <script src="js/jquery.style-my-tooltips.js"></script>
+    <script>
+    (function($){
+    $(document).ready(function(){
+    $("[title]").style_my_tooltips({
+    tip_follows_cursor:true,
+    tip_delay_time:200,
+    tip_fade_speed:300
+    }
+    );
+    });
+    })(jQuery);
+    </script>
+    <!-- CSS -->
+     
+    <style type="text/css">
+     
+    ::-webkit-scrollbar {width:6px; height: 6px; background:#fff;}
+    ::-webkit-scrollbar-corner { background: #111;}
+    ::-webkit-scrollbar-thumb:vertical {background: #111;}
+    ::-webkit-scrollbar-thumb:horizontal {background: #111;}
+     
+     
+    #s-m-t-tooltip {
+    z-index:999;
+    max-width:300px;
+    margin:15px 0px 0px 15px;
+    text-transform: lowercase;
+    font-family: helvetica;
+    font-size: 9px;
+    color:#333;
+    background: {color:highlight};
+    border: 1px double #eee;
+    padding:5px;
+    }
+     
+    body {
+        margin:0px;
+        padding:0px;
+        width:auto;
+        font-size: 90px;
+        color:{color:bodytext};
+        background:{color:background};
+    }
+     
+    #entry {
+        padding-top: 25px;
+        line-height: 150%;
+        margin: auto;
+        position: absolute;
+        width: 500px;
+        font-family: helvetica;
+        font-size: 9px;
+    }
+     
+    .post {
+        margin-top: 25px;
+        margin-left: 50px;
+        float:center;
+        overflow:hidden;
+        text-align:justify;
+        padding-top: 25px;
+        padding-bottom: 50px;
+        width:500px;
+        overflow:hidden;
+        padding-right: 5px;
+    }
+     
+    .post img {
+        width: 100%;
+    }
+       
+    iframe.photoset {
+        width:500px;
+    }
+     
+    #container {
+        position:absolute;
+        left:50%;
+        margin-left:-120px;
+    }
+     
+    a {
+        text-decoration:none;
+        color:{color:link};
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+    a:hover {
+        color:{color:linkhover};
+        }
+     
+    .caption {
+        width:500px;
+        text-align:justify;
+        margin-top: 20px;
+        margin-bottom: 2px;
+        font-family: helvetica;
+        display:block;
+        background:#fff;
+        padding: 0px 0px 0px 0px;
+       
+    }
+    .caption img {
+        max-width:100%;
+    }
+     
+    blockquote {
+        padding-left:20px;
+        border-left:1px solid #aaa;
+    }
+     
+     
+     
+    /* sidebar, title, and description in sidebar */
+     
+    #sidebar {
+        position:fixed;
+        border-right: 1px solid #ddd;
+        padding-right: 30px;
+        text-align:left;
+        width: 300px;
+        margin-top: 125px;
+        z-index:1;
+		display:block;
+        margin-left:-385px;
+    }
+	 
+    #sidelinks {
+        font-family: helvetica;
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+        font-weight: 100;
+        width: 300px;
+        text-align: center;
+        padding-top: 45px;
+        padding-bottom: 5px;
+		float:left;
+    }
+     
+    #sidelinks a {
+        margin-left: 11px;
+        margin-right: 0px;
+        color: #000000;
+    }
+     
+    #sidelinks a:hover {
+        -webkit-transition:all 0.3s;
+        -moz-transition:all 0.3s;
+        -ms-transition:all 0.3s;
+        -o-transition:all 0.3s;
+        transition:all 0.3s;
+		font-style: italic;
+        color: #bd1111;}
+		
+	#sidelinks .active {
+		font-style:italic;
+		color:#20608c;
+	}
+    
+	#socialsidelinks {
+        font-family: helvetica;
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+        font-weight: 100;
+        width: 300px;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 5px;
+		float:left;
+    }
+     
+    #socialsidelinks a {
+        margin-left: 11px;
+        margin-right: 4px;
+        color: #000000;
+    }
+     
+    #socialsidelinks a:hover {
+        -webkit-transition:all 0.3s;
+        -moz-transition:all 0.3s;
+        -ms-transition:all 0.3s;
+        -o-transition:all 0.3s;
+        transition:all 0.3s;
+		color: #20608c;}
+	
+    	
+    #dropdown {
+        font-family: helvetica;
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+        font-weight: 100;
+        width: 300px;
+        text-align: left;
+        padding-top: 0px;
+        padding-bottom: 5px;
+		padding-left: 35px;
+		float:left;
+    }
+	
+	#dropdown a:hover {
+        -webkit-transition:all 0.3s;
+        -moz-transition:all 0.3s;
+        -ms-transition:all 0.3s;
+        -o-transition:all 0.3s;
+        transition:all 0.3s;
+		color: #bd1111;} 
+	
+    #dropdown a {
+        margin-left: 6px;
+        margin-right: 0px;
+        color: #000000;
+    }
+	
+	#dropdown .active {
+		font-style:italic;
+		color:#20608c; }
+	
+	
+	#title {
+        color:#000000;
+        text-align: right;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 16px;
+        line-height:125%;
+        font-family: helvetica;
+        letter-spacing: 2px;
+		float:right;
+       
+    }
+       
+    #title a {
+        color: #000000;
+    }
+     
+    .description {
+        width: 300px;
+        text-align:justify;
+        <!-- text-transform: lowercase; -->
+        margin-left:0px;
+        padding:0px;
+        font-family: helvetica;
+        font-size: 9px;
+        margin-bottom:-50px;
+        padding-bottom:25px;
+        line-height: 155%;
+		float:left;
+    }
+     
+     
+     
+    /* tags and tags section, permalink on post */
+ 
+     
+    #tagssection {
+        font-size: 9px;
+        text-transform: lowercase;
+        font-weight: 300;
+        width:450px;
+        text-align:justify;
+        margin-top: 20px;
+        display:block;
+        background:{color:highlight};
+        padding: 19px 25px 16px 25px;
+        border-top: 1px solid #e6e6e6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+       
+    }
+     
+    #tagssection a {
+        color:{color:tagslink};
+    }
+     
+    #tagssection a:hover {
+        color:{color:tagslinkhover};
+    }
+     
+    #tags {
+        font-size: 9px;
+        text-transform: lowercase;
+        font-weight: 300;
+        margin-top: 3px;
+        margin-bottom: 2px;
+        color:{color:tagslink};
+    }
+    #tags a {
+        color:{color:tagslink};
+    }
+    #tags a:hover {
+        color:{color:tagslinkhover};
+    }        
+     
+     
+     
+    /* post titles, quotes and sources */
+     
+    h1 {
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 16px;
+        line-height:125%;
+        font-family: helvetica;
+        letter-spacing: 2px;
+        padding-left:0px;
+        color:{color:title};    
+    }
+    h1 a {
+        color:{color:title};
+    }
+     
+    .quote {
+        font-style: lowercase;
+        text-align:justify;
+        padding-right:5px;
+        padding-left:5px;
+        padding-bottom:3px;
+    }
+     
+    #source {
+        text-align:right;
+        font-style: lowercase;
+        font-size: 9px;
+        padding-top: 5px;
+    }
+     
+
+     
+  
+	
+	#sidebar .logo{
+		display: block;
+		max-width:150px;
+		max-height:150px;
+		margin: 0 0 0 0px;}
+		
+		
+	#sidebar a {
+	   text-decoration: none;}
+     
+     
+    </style></head><body>
+     
+     
+     
+    <div id="container">
+    <div id="sidebar" >
+		<div >
+			<a href="tbh.html" align="right" title="Home">
+			<img src="tbh.gif" align="right" class="logo" />
+			</a>
+		</div>
+		
+	<div id="title"><a href="tbh.html">THE BROKEN HASH</a></div>
+    <div class="description">
+	I am Kirti Vardhan Rathore, 20 years old, quite inspired to make good art. I do not claim to be a story teller but wish I could tell one. here are my efforts to bring you the state of my mind. no matter how quiet and conformist a person's life seems, there's always a time in the past when they reached an impasse. a time when they went a little crazy. I guess people need that sort of stage in their lives, and I am in that phase of my life.
+	</div>
+     
+    <div id="sidelinks">
+    <a href="designs.html" class='active'>designs</a>
+    <a href="photo_series.html">photo series</a>
+    <a href="surreal_egotist.html">surreal egotist</a>
+    <a href="misc.html">misc</a>
+	</div>
+    
+	<div id="dropdown">
+    <a href="designs_logos.html">logos</a><br>
+    <a href="designs_posters.html" >posters</a><br>
+	<a href="designs_minimal_text.html" >minimal text</a><br>
+    <a href="designs_tshirts.html">tshirts</a><br>
+    <a href="designs.html"  >   ^</a><br>
+	</div>
+	
+	<div id="socialsidelinks">
+	<a href="https://www.facebook.com/thebrokenhash" target="_blank">|facebook|</a>
+    <a href="https://www.flickr.com/photos/thebrokenhash" target="_blank">|flickr|</a>
+	<a href="https://www.instagram.com/kirti_vardhan" target="_blank">|instagram|</a>
+	<a href="say_hi.html" target="_blank">|say hi|</a>
+	</div>
+    </div>
+     
+     
+     
+		<div id="entry">
+			<div class="post">
+			
+			
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D1.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D2.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D3.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D4.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D5.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D6.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D7.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D8.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D9.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D10.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D11.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D12.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/logos/D13.jpg"></a></center>			</div>
+				<span class="caption">_________________________________________________________________________________________________________</span>
+				
+		
+				<div id='posters'><a name="posters" /></div>
+					<br><br>
+				
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D1.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D2.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D3.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D4.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D5.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D6.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D7.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/posters/D8.jpg"></a></center>			</div>
+				<span class="caption">_________________________________________________________________________________________________________</span>
+				
+				
+				<div id='minimal_text'><a name="minimal_text" /></div>
+					<br><br>
+				
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D1.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D2.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D3.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D4.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D5.jpg"></a></center>			</div>
+				<div style="margin-bottom:15px;"> 		<center><img src="designs/minimal_text/D6.jpg"></a></center>			</div>
+				<span class="caption">_________________________________________________________________________________________________________</span>
+			
+			
+			
+			</div>
+			
+			
+			
+						
+			<!-- 
+			COPY THIS FOR A NEW POST
+			
+			<div class="post">
+	
+				<div style="margin-bottom:5px;">
+					<center><a href="{Permalink}"><img src="{PhotoURL-500}"></a></center>
+				</div>
+				
+				<span class="caption">{Caption}</span>
+				
+			</div>
+	
+		 
+			-->
+			
+			
+			
+			
+		</div>
+		
+		
+		
+		
+	</div>
+     
+    </body></html>
+
